@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, discountIndicatorAmount } from "./utils.mjs";
+import { getLocalStorage, setLocalStorage, discountIndicatorAmount, cartSuperscript } from "./utils.mjs";
 
 export default class ProductDetails {
 
@@ -34,8 +34,20 @@ export default class ProductDetails {
         //Save cart
         setLocalStorage("so-cart", cartItems);
 
-        //Refresh the page so the superscript on the cart icon will update
-        location.reload();
+        const icon = document.querySelector(".cart");
+
+        // Add an animation to the cart
+        icon.classList.add("animate");
+
+        icon.addEventListener("animationend", () => {
+            icon.classList.remove("animate");
+            
+            //Refresh the page so the superscript on the cart icon will update
+            // location.reload();
+
+            // No need to do a page reload, just render the Superscript after the animation finishes
+            cartSuperscript()
+        }, { once: true });
     }
 
     renderProductDetails() {

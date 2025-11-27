@@ -57,7 +57,7 @@ export function renderWithTemplate(template, parentElement, callback) {
 
 
 //Function to create a superscript on the cart in the header
-function cartSuperscript() {
+export function cartSuperscript() {
   //Pull items in cart from local storage
   const cartItems = getLocalStorage('so-cart') || [];
 
